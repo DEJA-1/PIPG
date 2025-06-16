@@ -11,9 +11,19 @@ config_version=5
 [application]
 
 config/name="PIPG-SECOND-GAME"
+run/main_scene="uid://bc21ebwi2p3jy"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1440
+window/size/viewport_height=1070
 
 [filesystem]
 
 import/blender/enabled=false
+
+[rendering]
+
+environment/defaults/default_environment="uid://b8aolsux2t042"

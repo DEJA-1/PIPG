@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://drkpuobsrr3t8"]
+
+[ext_resource type="FontFile" uid="uid://c65i4uc86kye6" path="res://fonts/OTF/Jellee-Bold.otf" id="1_chubq"]
+[ext_resource type="Script" uid="uid://b1gypqvfwvqly" path="res://button_title_play.gd" id="2_x6u1t"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1452.0
+offset_bottom = 1071.0
+color = Color(0.65794, 0.31143, 0.0609094, 0.113725)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 246.0
+offset_right = 1444.0
+offset_bottom = 609.0
+theme_override_colors/font_color = Color(1, 0.611765, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 24
+theme_override_fonts/font = ExtResource("1_chubq")
+theme_override_font_sizes/font_size = 120
+text = "Przegrana"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="button-title-play_again" type="Button" parent="."]
+layout_mode = 0
+offset_left = 477.0
+offset_top = 519.0
+offset_right = 967.0
+offset_bottom = 626.0
+theme_override_colors/font_hover_pressed_color = Color(0, 0.709804, 0, 1)
+theme_override_fonts/font = ExtResource("1_chubq")
+theme_override_font_sizes/font_size = 41
+text = "Gramy ponownie"
+script = ExtResource("2_x6u1t")
+
+[connection signal="pressed" from="button-title-play_again" to="button-title-play_again" method="_on_pressed"]

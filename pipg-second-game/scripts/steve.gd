@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
-const SPEED = 6
-const ROTATION_SPEED = 7
+const SPEED = 12
+const ROTATION_SPEED = 9
 
 func _ready():
 	pass
@@ -33,3 +33,7 @@ func handle_movement():
 		velocity.z = lerp(velocity.z, 0.0, 0.1)
 	move_and_slide()
 	
+
+func _on_enemy_body_entered(body: Node3D) -> void:
+	if body.name == "Steve":
+		get_tree().change_scene_to_file("res://assets/play_again.tscn")

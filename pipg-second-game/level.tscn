@@ -1,40 +1,197 @@
-[gd_scene load_steps=9 format=3 uid="uid://dbpi4wj075fgc"]
+[gd_scene load_steps=21 format=3 uid="uid://dbpi4wj075fgc"]
 
+[ext_resource type="Texture2D" uid="uid://db8tpaagi3trw" path="res://imports/TactilePaving002_2K-JPG/TactilePaving002_2K-JPG_NormalDX.jpg" id="1_f2txt"]
 [ext_resource type="PackedScene" uid="uid://rec315dxfax7" path="res://assets/steve.tscn" id="1_u52ul"]
+[ext_resource type="Texture2D" uid="uid://l6csbpmt64la" path="res://imports/TactilePaving002_2K-JPG/TactilePaving002_2K-JPG_Roughness.jpg" id="2_1ainy"]
 [ext_resource type="Script" uid="uid://ccasbjaasfqgb" path="res://scripts/steve.gd" id="2_vonw3"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_5xgho"]
-
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_5xgho"]
-vertex_color_is_srgb = true
-
-[sub_resource type="BoxMesh" id="BoxMesh_u52ul"]
-material = SubResource("ORMMaterial3D_5xgho")
+[ext_resource type="Environment" uid="uid://b8aolsux2t042" path="res://new_env.tres" id="3_0b4ue"]
+[ext_resource type="Script" uid="uid://bh6fg0nwm1h46" path="res://scripts/counter.gd" id="3_aicyk"]
+[ext_resource type="Script" uid="uid://c1hgp0w1dahkn" path="res://camera_3d.gd" id="3_oi3di"]
+[ext_resource type="MeshLibrary" uid="uid://dwjuq2votmj28" path="res://assets/blocksLibrary.tres" id="7_n6hdu"]
+[ext_resource type="PackedScene" uid="uid://jv2vnfrj2w0n" path="res://assets/enemy.tscn" id="8_km5ld"]
+[ext_resource type="PackedScene" uid="uid://cpvqqtv2xfgcb" path="res://assets/coin.tscn" id="9_i2t4f"]
+[ext_resource type="Texture2D" uid="uid://b1010jc0okf4d" path="res://imports/hud_coin.png" id="10_2orkt"]
+[ext_resource type="FontFile" uid="uid://c65i4uc86kye6" path="res://fonts/OTF/Jellee-Bold.otf" id="11_aicyk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u52ul"]
 size = Vector3(30, 1, 30)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vonw3"]
-albedo_color = Color(0.356863, 0.631373, 0.447059, 1)
+albedo_color = Color(0.377661, 0.73127, 0.956776, 1)
+roughness_texture = ExtResource("2_1ainy")
+normal_enabled = true
+normal_scale = -5.86
+normal_texture = ExtResource("1_f2txt")
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_vonw3"]
 material = SubResource("StandardMaterial3D_vonw3")
 size = Vector3(30, 1, 30)
 
+[sub_resource type="Animation" id="Animation_i2t4f"]
+length = 16.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-2.689, 1.468, -12.306)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_km5ld"]
+resource_name = "enemy1animation"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.04, 8.01, 9.69),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-2.689, 1.468, -12.306), Vector3(-12.0744, 1.468, -12.306), Vector3(8.30438, 1.468, -12.306), Vector3(-2.39365, 1.468, -12.306)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.06, 8.02, 9.71),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 9.42478), Vector3(0, 0, -21.9911), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8cye3"]
+resource_name = "enemy2animation"
+length = 16.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.03, 5.07, 7.1172, 9.0272, 11.0272, 14.0056, 16.56),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-9.18658, 1.468, -3.15034), Vector3(1.41301, 1.468, -3.15034), Vector3(1.41301, 1.468, -8.49936), Vector3(8.3372, 1.468, -8.49936), Vector3(1.74117, 1.468, -8.49936), Vector3(1.74117, 1.468, -2.95344), Vector3(-8.92404, 1.468, -2.95345), Vector3(1.59648, 1.468, -3.03735)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.05, 5.1, 7.14),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -9.42478), Vector3(-8.35489, 0, -7.93252), Vector3(-6.79108, 0, -12.5664)]
+}
+
+[sub_resource type="Animation" id="Animation_2orkt"]
+resource_name = "enemy3animation"
+length = 9.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.03, 4.5, 5.99, 9.01),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-8.59382, 1.468, 8.60224), Vector3(3.47578, 1.468, 8.60224), Vector3(3.47578, 1.468, 3.40303), Vector3(3.47578, 1.468, 8.67652), Vector3(-8.63096, 1.468, 8.67652)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.04, 4.52, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -9.42478), Vector3(-3.14159, 0, -7.08429), Vector3(0, 0, -4.7438)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8cye3"]
+_data = {
+&"RESET": SubResource("Animation_i2t4f"),
+&"enemy1animation": SubResource("Animation_km5ld"),
+&"enemy2animation": SubResource("Animation_8cye3"),
+&"enemy3animation": SubResource("Animation_2orkt")
+}
+
 [node name="Level" type="Node3D"]
 
-[node name="Box" type="RigidBody3D" parent="."]
-transform = Transform3D(0.871325, 0.400503, -0.28353, -0.490706, 0.711156, -0.503452, 0, 0.577801, 0.816178, 0, 4.11794, 6.9901)
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1438.0
+offset_bottom = 1068.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Box"]
-shape = SubResource("BoxShape3D_5xgho")
+[node name="Sprite2D" type="Sprite2D" parent="Control"]
+position = Vector2(1176, 113)
+scale = Vector2(0.298, 0.288)
+texture = ExtResource("10_2orkt")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Box"]
-mesh = SubResource("BoxMesh_u52ul")
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 1137.0
+offset_top = 52.0
+offset_right = 1393.0
+offset_bottom = 134.0
+theme_override_fonts/font = ExtResource("11_aicyk")
+theme_override_font_sizes/font_size = 65
+text = "x"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(-0.999237, -0.00231128, 0.0389881, 0.00483171, 0.983264, 0.182123, -0.0387565, 0.182172, -0.982503, 0.781528, 5.71082, -9.17186)
-fov = 61.875
+[node name="Counter" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 1197.0
+offset_top = 55.0
+offset_right = 1453.0
+offset_bottom = 137.0
+theme_override_fonts/font = ExtResource("11_aicyk")
+theme_override_font_sizes/font_size = 65
+text = "24"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_aicyk")
+
+[node name="Timer" type="Timer" parent="Control/Counter"]
+wait_time = 0.5
 
 [node name="Floor" type="StaticBody3D" parent="."]
 
@@ -47,3 +204,131 @@ mesh = SubResource("BoxMesh_vonw3")
 [node name="Steve" parent="." instance=ExtResource("1_u52ul")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43816, 0)
 script = ExtResource("2_vonw3")
+
+[node name="cameraTarget" type="Node3D" parent="Steve"]
+transform = Transform3D(0.853014, -0.521888, 0, 0.521888, 0.853014, 0, 0, 0, 1, -0.687912, 0.883947, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.000459541, 0.873058, -0.487616, -0.000822792, 0.487616, 0.873058, 1, -2.91038e-11, 0.000942425, -11.2919, 14.4162, 0.347991)
+environment = ExtResource("3_0b4ue")
+script = ExtResource("3_oi3di")
+target = NodePath("../Steve/cameraTarget")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.663664, -0.229368, -0.711998, 0.536717, -0.516987, 0.666828, -0.521043, -0.824691, -0.22, -11.0648, 10.2497, 0)
+light_energy = 1.5
+light_specular = 0.5
+shadow_enabled = true
+
+[node name="GridMap" type="GridMap" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh_library = ExtResource("7_n6hdu")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(65521, 65521, 1441793, 65521, 65522, 1441793, 65521, 65523, 1441793, 65521, 65524, 1441793, 65521, 65525, 1441793, 65521, 65526, 1441793, 65521, 65527, 1441793, 65521, 65528, 1441793, 65521, 65529, 1441793, 65521, 65530, 1441793, 65521, 65531, 1441793, 65521, 65532, 1441793, 65521, 65533, 1441793, 65521, 65534, 1441793, 65521, 65535, 1441793, 65521, 0, 1441793, 65521, 1, 1441793, 65521, 2, 1441793, 65521, 3, 1441793, 65521, 4, 1441793, 65521, 5, 1441793, 65521, 6, 1441793, 65521, 7, 1441793, 65521, 8, 1441793, 65521, 9, 1441793, 65521, 10, 1441793, 65521, 11, 1441793, 65521, 12, 1441793, 65521, 13, 1441793, 65521, 14, 1441793, 65522, 65521, 1441793, 65523, 65521, 1441793, 65524, 65521, 1441793, 65525, 65521, 1441793, 65526, 65521, 1441793, 65527, 65521, 1441793, 65528, 65521, 1441793, 65529, 65521, 1441793, 65530, 65521, 1441793, 65531, 65521, 1441793, 65532, 65521, 1441793, 65533, 65521, 1441793, 65534, 65521, 1441793, 65535, 65521, 1441793, 0, 65521, 1441793, 1, 65521, 1441793, 2, 65521, 1441793, 3, 65521, 1441793, 4, 65521, 1441793, 5, 65521, 1441793, 6, 65521, 1441793, 7, 65521, 1441793, 8, 65521, 1441793, 9, 65521, 1441793, 10, 65521, 1441793, 11, 65521, 1441793, 12, 65521, 1441793, 13, 65521, 1441793, 14, 65521, 1441793, 14, 65522, 1441793, 14, 65523, 1441793, 14, 65524, 1441793, 14, 65525, 1441793, 14, 65526, 1441793, 14, 65527, 1441793, 14, 65528, 1441793, 14, 65529, 1441793, 14, 65530, 1441793, 14, 65531, 1441793, 14, 65532, 1441793, 14, 65533, 1441793, 14, 65534, 1441793, 14, 65535, 1441793, 14, 0, 1441793, 14, 1, 1441793, 14, 2, 1441793, 14, 3, 1441793, 14, 4, 1441793, 14, 5, 1441793, 14, 6, 1441793, 14, 7, 1441793, 14, 8, 1441793, 14, 9, 1441793, 14, 10, 1441793, 14, 11, 1441793, 14, 12, 1441793, 14, 13, 1441793, 14, 14, 1441793, 65522, 14, 1441793, 65523, 14, 1441793, 65524, 14, 1441793, 65525, 14, 1441793, 65526, 14, 1441793, 65527, 14, 1441793, 65528, 14, 1441793, 65529, 14, 1441793, 65530, 14, 1441793, 65531, 14, 1441793, 65532, 14, 1441793, 65533, 14, 1441793, 65534, 14, 1441793, 65535, 14, 1441793, 0, 14, 1441793, 1, 14, 1441793, 2, 14, 1441793, 3, 14, 1441793, 4, 14, 1441793, 5, 14, 1441793, 6, 14, 1441793, 7, 14, 1441793, 8, 14, 1441793, 9, 14, 1441793, 10, 14, 1441793, 11, 14, 1441793, 12, 14, 1441793, 13, 14, 1441793, 65526, 65525, 1441792, 65526, 65526, 1441792, 65526, 65527, 1441792, 65526, 65528, 1441792, 65526, 65529, 1441792, 65527, 65525, 1441792, 65528, 65525, 1441792, 65529, 65525, 1441792, 65530, 65525, 1441792, 65531, 65525, 1441792, 0, 65525, 1441792, 1, 65525, 1441792, 2, 65525, 1441792, 6, 65525, 1441792, 7, 65525, 1441792, 8, 65525, 1441792, 9, 65525, 1441792, 10, 65525, 1441792, 10, 65526, 1441792, 10, 65527, 1441792, 10, 65528, 1441792, 10, 65529, 1441792, 10, 65524, 1441792, 65530, 65528, 1441792, 65530, 65529, 1441792, 65530, 65530, 1441792, 65525, 65535, 1441792, 65526, 65535, 1441792, 65527, 65535, 1441792, 65528, 65535, 1441792, 65529, 65535, 1441792, 5, 5, 1441792, 5, 6, 1441792, 5, 7, 1441792, 5, 8, 1441792, 5, 9, 1441792, 6, 5, 1441792, 7, 5, 1441792, 8, 5, 1441792, 8, 65535, 1441792, 8, 0, 1441792, 8, 1, 1441792, 8, 2, 1441792, 8, 3, 1441792, 8, 4, 1441792, 65525, 10, 1441792, 65525, 4, 1441792, 65525, 5, 1441792, 65525, 6, 1441792, 65525, 7, 1441792, 65525, 8, 1441792, 65525, 9, 1441792, 65527, 10, 1441792, 65528, 10, 1441792, 65529, 10, 1441792, 65530, 10, 1441792, 65531, 10, 1441792, 65532, 10, 1441792, 65526, 10, 1441792, 65529, 4, 1441792, 65529, 5, 1441792, 65529, 6, 1441792, 65530, 4, 1441792, 65531, 4, 1441792, 65532, 4, 1441792, 65532, 5, 1441792, 65533, 5, 1441792, 65534, 5, 1441792, 65531, 1, 1441792, 3, 65531, 1441792, 3, 65532, 1441792, 3, 65533, 1441792, 3, 65534, 1441792, 3, 65535, 1441792, 3, 0, 1441792, 3, 1, 1441792, 4, 65531, 1441792, 5, 65531, 1441792, 6, 65531, 1441792, 65535, 65528, 1441792, 9, 9, 1441792, 9, 10, 1441792, 10, 9, 1441792, 10, 10, 1441792, 11, 9, 1441792, 11, 10, 1441792, 11, 65533, 1441792, 65524, 65532, 1441792)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="enemy1" parent="." instance=ExtResource("8_km5ld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.689, 1.468, -12.306)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="enemy1"]
+libraries = {
+&"": SubResource("AnimationLibrary_8cye3")
+}
+autoplay = "enemy1animation"
+
+[node name="enemy2" parent="." instance=ExtResource("8_km5ld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.689, 1.468, -12.306)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="enemy2"]
+libraries = {
+&"": SubResource("AnimationLibrary_8cye3")
+}
+autoplay = "enemy2animation"
+
+[node name="enemy3" parent="." instance=ExtResource("8_km5ld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.689, 1.468, -12.306)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="enemy3"]
+libraries = {
+&"": SubResource("AnimationLibrary_8cye3")
+}
+autoplay = "enemy3animation"
+
+[node name="Coins" type="Node3D" parent="."]
+
+[node name="coinholder1" type="Node3D" parent="Coins"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.03103, 1.15838, -2.32284)
+
+[node name="coin" parent="Coins/coinholder1" instance=ExtResource("9_i2t4f")]
+
+[node name="coinholder2" type="Node3D" parent="Coins"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.03103, 1.15838, 0.967125)
+
+[node name="coin" parent="Coins/coinholder2" instance=ExtResource("9_i2t4f")]
+
+[node name="coinholder3" type="Node3D" parent="Coins"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.03103, 1.15838, 3.56256)
+
+[node name="coin" parent="Coins/coinholder3" instance=ExtResource("9_i2t4f")]
+
+[node name="coinholder4" type="Node3D" parent="Coins"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.62246, 1.15838, -7.94485)
+
+[node name="coin" parent="Coins/coinholder4" instance=ExtResource("9_i2t4f")]
+
+[node name="coinholder5" type="Node3D" parent="Coins"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9603, 1.15838, -12.4175)
+
+[node name="coin" parent="Coins/coinholder5" instance=ExtResource("9_i2t4f")]
+
+[node name="coinholder6" type="Node3D" parent="Coins"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.63498, 1.15838, 2.15624)
+
+[node name="coin" parent="Coins/coinholder6" instance=ExtResource("9_i2t4f")]
+
+[node name="coinholder7" type="Node3D" parent="Coins"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2447, 1.15838, 12.526)
+
+[node name="coin" parent="Coins/coinholder7" instance=ExtResource("9_i2t4f")]
+
+[node name="coinholder8" type="Node3D" parent="Coins"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.41264, 1.15838, 7.54854)
+
+[node name="coin" parent="Coins/coinholder8" instance=ExtResource("9_i2t4f")]
+
+[node name="coinholder9" type="Node3D" parent="Coins"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.52672, 1.15838, 8.50485)
+
+[node name="coin" parent="Coins/coinholder9" instance=ExtResource("9_i2t4f")]
+
+[node name="coinholder10" type="Node3D" parent="Coins"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0786142, 1.15838, 12.4893)
+
+[node name="coin" parent="Coins/coinholder10" instance=ExtResource("9_i2t4f")]
+
+[connection signal="timeout" from="Control/Counter/Timer" to="Control/Counter" method="_on_timer_timeout"]
+[connection signal="body_entered" from="enemy1" to="Steve" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="enemy2" to="Steve" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="enemy3" to="Steve" method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Coins/coinholder1/coin" to="Coins/coinholder1/coin" method="_on_body_entered"]
+[connection signal="coinCollected" from="Coins/coinholder1/coin" to="Control/Counter" method="_on_coin_coin_collected"]
+[connection signal="body_entered" from="Coins/coinholder2/coin" to="Coins/coinholder2/coin" method="_on_body_entered"]
+[connection signal="coinCollected" from="Coins/coinholder2/coin" to="Control/Counter" method="_on_coin_coin_collected"]
+[connection signal="body_entered" from="Coins/coinholder3/coin" to="Coins/coinholder3/coin" method="_on_body_entered"]
+[connection signal="coinCollected" from="Coins/coinholder3/coin" to="Control/Counter" method="_on_coin_coin_collected"]
+[connection signal="body_entered" from="Coins/coinholder4/coin" to="Coins/coinholder4/coin" method="_on_body_entered"]
+[connection signal="coinCollected" from="Coins/coinholder4/coin" to="Control/Counter" method="_on_coin_coin_collected"]
+[connection signal="body_entered" from="Coins/coinholder5/coin" to="Coins/coinholder5/coin" method="_on_body_entered"]
+[connection signal="coinCollected" from="Coins/coinholder5/coin" to="Control/Counter" method="_on_coin_coin_collected"]
+[connection signal="body_entered" from="Coins/coinholder6/coin" to="Coins/coinholder6/coin" method="_on_body_entered"]
+[connection signal="coinCollected" from="Coins/coinholder6/coin" to="Control/Counter" method="_on_coin_coin_collected"]
+[connection signal="body_entered" from="Coins/coinholder7/coin" to="Coins/coinholder7/coin" method="_on_body_entered"]
+[connection signal="coinCollected" from="Coins/coinholder7/coin" to="Control/Counter" method="_on_coin_coin_collected"]
+[connection signal="body_entered" from="Coins/coinholder8/coin" to="Coins/coinholder8/coin" method="_on_body_entered"]
+[connection signal="coinCollected" from="Coins/coinholder8/coin" to="Control/Counter" method="_on_coin_coin_collected"]
+[connection signal="body_entered" from="Coins/coinholder9/coin" to="Coins/coinholder9/coin" method="_on_body_entered"]
+[connection signal="coinCollected" from="Coins/coinholder9/coin" to="Control/Counter" method="_on_coin_coin_collected"]
+[connection signal="body_entered" from="Coins/coinholder10/coin" to="Coins/coinholder10/coin" method="_on_body_entered"]
+[connection signal="coinCollected" from="Coins/coinholder10/coin" to="Control/Counter" method="_on_coin_coin_collected"]
